@@ -36,14 +36,14 @@ def start_services(config):
     for service, enabled in services.items():
         if enabled:
             print(f"Starting {service} service...")
-            subprocess.run(['docker-compose', 'up', '-d', service])
+            subprocess.run(['docker', 'compose', 'up', '-d', service])
         else:
             print(f"{service} service is disabled in configuration.")
 
     # Always start nginx last
     if services.get('nginx', True):  # Default to True if not specified
         print("Starting nginx service...")
-        subprocess.run(['docker-compose', 'up', '-d', 'nginx'])
+        subprocess.run(['docker', 'compose', 'up', '-d', 'nginx'])
 
 if __name__ == "__main__":
     print_banner()
