@@ -22,8 +22,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./sigmanaut-mining-pool-ui/off-chain:/app
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     restart: unless-stopped
     depends_on:
       - dash
@@ -44,9 +44,9 @@ services:
     depends_on:
       - dash
       - sharkui
+      - miner-id-minter
     restart: unless-stopped
-    
-    
+
   bonus:
     build:
       context: ./sigs-mining-core
