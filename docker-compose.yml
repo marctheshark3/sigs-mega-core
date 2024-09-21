@@ -28,11 +28,11 @@ services:
     depends_on:
       - dash
 
-  sharkui:
-    build: ./miner-view
-    expose:
-      - "7681"
-    command: ttyd -p 7681 python run.py
+  # sharkui:
+  #   build: ./miner-view
+  #   expose:
+  #     - "7681"
+  #   command: ttyd -p 7681 python run.py
 
   nginx:
     image: nginx:latest
@@ -43,19 +43,19 @@ services:
       - ./conf/conf.yaml:/app/conf/conf.yaml
     depends_on:
       - dash
-      - sharkui
+      # - sharkui
       - miner-id-minter
     restart: unless-stopped
 
-  bonus:
-    build:
-      context: ./sigs-mining-core
-      dockerfile: bonus_dockerfile
-    volumes:
-      - ./sigs-mining-core:/app
-      - ./logs:/var/log
-    env_file:
-      - .env
+  # bonus:
+  #   build:
+  #     context: ./sigs-mining-core
+  #     dockerfile: bonus_dockerfile
+  #   volumes:
+  #     - ./sigs-mining-core:/app
+  #     - ./logs:/var/log
+  #   env_file:
+  #     - .env
 
 networks:
   default:
