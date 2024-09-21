@@ -32,10 +32,7 @@ def read_config():
 
 def start_services(config):
     services = config.get('services', {})
-    
-    # Always start the database
-    subprocess.run(['docker-compose', 'up', '-d', 'ui-db'])
-    
+        
     for service, enabled in services.items():
         if enabled:
             print(f"Starting {service} service...")
